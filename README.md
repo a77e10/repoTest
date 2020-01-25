@@ -31,3 +31,4 @@ starwars %>%
   group_by(species, gender) %>% 
   summarise(mean_height = mean(height, na.rm = T))
 # na.rm = T , no considera los na para los calculos
+asdfadfa
