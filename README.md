@@ -31,4 +31,31 @@ starwars %>%
   group_by(species, gender) %>% 
   summarise(mean_height = mean(height, na.rm = T))
 # na.rm = T , no considera los na para los calculos
-asdfadfa
+
+##webscrap
+library(rvest)
+m100 <- read_html("http://en.wikipedia.org/wiki/Men%27s_100_metres_world_record_progression") 
+m100
+
+pre_iaaf2 <-
+m100 %>%
+  html_nodes("#mw-content-text > div > table:nth-child(14)") %>%
+  html_table(fill=TRUE) 
+  
+pre_iaaf2 <- 
+  pre_iaaf2 %>%
+  bind_rows() %>%
+  as_tibble()
+pre_iaaf2
+
+pre_iaaf2 <-
+  pre_iaaf2 %>%
+  clean_names()
+pre_iaaf2
+
+pre_iaaf2 <-
+  pre_iaaf2 %>%
+  mutate(athlete = ifelse(, athlete, lag(athlete)))
+  
+
+  
